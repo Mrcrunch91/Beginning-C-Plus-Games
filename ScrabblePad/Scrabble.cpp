@@ -6,10 +6,11 @@
  */
 
 #include "Scrabble.h"
-#include <iostream>
-#include <string>
+
 
 using namespace std;
+
+
 
 Scrabble::Scrabble() {
 	// TODO Auto-generated constructor stub
@@ -20,7 +21,22 @@ Scrabble::~Scrabble() {
 	// TODO Auto-generated destructor stub
 }
 
-int main(){
-	cout<<"It works again Nate!"<< endl;
+int getUserInput(int userInput, int z = 5){
+	cout << "Enter a number: " <<endl;
+	cin>>userInput;
+	cout<<"Your number is: " << userInput << endl;
+	cout<<"We've modified it to: " << userInput*z << endl;
+	return userInput;
 }
+
+int getUserInput(string userInput, string z = "Nate"){
+
+}
+
+int main(){
+
+	cout << getUserInput(7) << endl;
+}
+
+
 

@@ -8,7 +8,11 @@
 #ifndef SCRABBLE_H_
 #define SCRABBLE_H_
 
+#include <iostream>
+#include <string>
+
 class Scrabble {
+
 public:
 	Scrabble();
 	virtual ~Scrabble();
