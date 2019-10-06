@@ -19,6 +19,8 @@ HangMan::~HangMan() {
 }
 
 int startGame(const string, int, string, const int);
+char playerGuess();
+bool checkGuess(const string THE_WORD, char guess);
 
 
 int main(){
@@ -64,10 +66,7 @@ int startGame(const string THE_WORD, int wrong, string used, const int MAX_WRONG
 		cout <<"\nSo far, the word is:\n" << soFar << endl;
 
 		char guess;
-		cout << "\n\nEnter your guess:";
-		cin >> guess;
-		guess = toupper(guess); // make uppercase since secret word in uppercase
-		cout << endl;
+		guess = toupper(playerGuess()); // make uppercase since secret word in uppercase
 
 		while(used.find(guess) != string::npos){
 			cout << "\nYou've already guessed " << guess << endl;
@@ -78,7 +77,7 @@ int startGame(const string THE_WORD, int wrong, string used, const int MAX_WRONG
 
 		used += guess;
 
-		if(THE_WORD.find(guess) != string::npos){
+		if(checkGuess(THE_WORD,guess)){
 			cout << "That's right! " << guess << " is in the word.\n";
 
 			//update soFar to include newly guessed letter
@@ -95,4 +94,20 @@ int startGame(const string THE_WORD, int wrong, string used, const int MAX_WRONG
 
 	return wrong;
 }
+
+char playerGuess(){
+	char guess;
+			cout << "\n\nEnter your guess:";
+			cin >> guess;
+			guess = toupper(guess); // make uppercase since secret word in uppercase
+			cout << endl;
+
+			return guess;
+}
+
+bool checkGuess(const string THE_WORD, char guess){
+	return THE_WORD.find(guess) != string::npos;
+}
+
+
 
