@@ -29,10 +29,6 @@ int getUserInput(int userInput, int z = 5){
 	return userInput;
 }
 
-int getUserInput(string userInput, string z = "Nate"){
-
-}
-
 int main(){
 
 	cout << getUserInput(7) << endl;
