@@ -12,7 +12,7 @@ using namespace std;
 
 string askText(string prompt);
 int askNumber(string prompt);
-void tellStory(string name, string noun, int number, string bodyPart, string verb);
+void tellStory(string& name, string& noun, int& number, string& bodyPart, string& verb);
 
 int main()
 {
@@ -25,7 +25,16 @@ int main()
     string bodyPart = askText("Please enter a body part: ");
     string verb = askText("Please enter a verb: ");
 
-    tellStory(name, noun, number, bodyPart, verb);
+    string& rName = name;
+    string& rNoun = noun;
+    int& rNumber = number;
+    string& rBodyPart = bodyPart;
+    string& rVerb = verb;
+
+    cout<< rVerb<<endl;
+    cout<<&rVerb<<endl;
+
+    tellStory(rName, rNoun, rNumber, rBodyPart, rVerb);
 
     return 0;
 }
@@ -46,7 +55,7 @@ int askNumber(string prompt)
     return num;
 }
 
-void tellStory(string name, string noun, int number, string bodyPart, string verb)
+void tellStory(string& name, string& noun, int& number, string& bodyPart, string& verb)
 {
     cout << "\nHere's your story:\n";
     cout << "The famous explorer ";
