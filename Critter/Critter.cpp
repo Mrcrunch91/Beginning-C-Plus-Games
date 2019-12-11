@@ -79,6 +79,10 @@ public:
         PassTime();
     }
 
+    void Status(){
+    	cout<< "Hunger Level: " << m_Hunger << "\nBoredom Level: " << m_Boredom;
+    }
+
 
 
 };
@@ -96,6 +100,7 @@ int main(){
         cout << "1 - Listen to your critter\n";
         cout << "2 - Feed your critter\n";
         cout << "3 - Play with your critter\n\n";
+        cout << "4 - Check on your critter\n\n";
 
         cout << "Choice: ";
         cin >> choice;
@@ -113,6 +118,9 @@ int main(){
 				break;
 			case 3:
 				crit.Play();
+				break;
+			case 4:
+				crit.Status();
 				break;
 			default:
 				cout << "\nSorry, but " << choice << " isn't a valid choice.\n";

@@ -191,36 +191,10 @@
         	
     </storageModule>
     	
-    <storageModule moduleId="scannerConfiguration">
-        		
-        <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-        		
-        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1185402852;cdt.managedbuild.config.gnu.cross.exe.debug.1185402852.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1666463032;cdt.managedbuild.tool.gnu.cpp.compiler.input.1178071412">
-            			
-            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-            		
-        </scannerConfigBuildInfo>
-        		
-        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1185402852;cdt.managedbuild.config.gnu.cross.exe.debug.1185402852.;cdt.managedbuild.tool.gnu.cross.c.compiler.555094128;cdt.managedbuild.tool.gnu.c.compiler.input.723852138">
-            			
-            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-            		
-        </scannerConfigBuildInfo>
-        		
-        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.683464893;cdt.managedbuild.config.gnu.cross.exe.release.683464893.;cdt.managedbuild.tool.gnu.cross.c.compiler.202110048;cdt.managedbuild.tool.gnu.c.compiler.input.979078496">
-            			
-            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-            		
-        </scannerConfigBuildInfo>
-        		
-        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.683464893;cdt.managedbuild.config.gnu.cross.exe.release.683464893.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.670191089;cdt.managedbuild.tool.gnu.cpp.compiler.input.292082934">
-            			
-            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-            		
-        </scannerConfigBuildInfo>
-        	
-    </storageModule>
-    	
     <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+    	
+    <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+    	
+    <storageModule moduleId="scannerConfiguration"/>
     
 </cproject>
