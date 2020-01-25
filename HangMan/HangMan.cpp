@@ -6,12 +6,6 @@
  */
 
 #include "HangMan.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <ctime>
-#include <cctype>
 
 using namespace std;
 
@@ -23,6 +17,11 @@ HangMan::HangMan() {
 HangMan::~HangMan() {
 	// TODO Auto-generated destructor stub
 }
+
+int startGame(const string, int, string, const int);
+char playerGuess();
+bool checkGuess(const string THE_WORD, char guess);
+
 
 int main(){
 
@@ -43,6 +42,23 @@ int main(){
 
 	cout << "Welcome to Hangman. Good luck!\n" << endl;
 
+	wrong = startGame(THE_WORD, wrong, used, MAX_WRONG);
+
+
+	if(wrong == MAX_WRONG){
+		cout << "\nYou've been hanged";
+	}else{
+		cout << "\nYou guessed it!";
+	}
+
+	cout << "\n The word was " << THE_WORD << endl;
+	return 0;
+}
+
+int startGame(const string THE_WORD, int wrong, string used, const int MAX_WRONG){
+
+	string soFar(THE_WORD.size(),'_');
+
 	while((wrong < MAX_WRONG) && (soFar != THE_WORD)){
 		cout << "\n\nYou have " << (MAX_WRONG - wrong);
 		cout <<" incorrect guesses left.\n" << endl;
@@ -50,10 +66,7 @@ int main(){
 		cout <<"\nSo far, the word is:\n" << soFar << endl;
 
 		char guess;
-		cout << "\n\nEnter your guess:";
-		cin >> guess;
-		guess = toupper(guess); // make uppercase since secret word in uppercase
-		cout << endl;
+		guess = toupper(playerGuess()); // make uppercase since secret word in uppercase
 
 		while(used.find(guess) != string::npos){
 			cout << "\nYou've already guessed " << guess << endl;
@@ -64,7 +77,7 @@ int main(){
 
 		used += guess;
 
-		if(THE_WORD.find(guess) != string::npos){
+		if(checkGuess(THE_WORD,guess)){
 			cout << "That's right! " << guess << " is in the word.\n";
 
 			//update soFar to include newly guessed letter
@@ -79,13 +92,22 @@ int main(){
 		}
 	}
 
-	if(wrong == MAX_WRONG){
-		cout << "\nYou've been hanged";
-	}else{
-		cout << "\nYou guessed it!";
-	}
-
-	cout << "\n The word was " << THE_WORD << endl;
-	return 0;
+	return wrong;
 }
+
+char playerGuess(){
+	char guess;
+			cout << "\n\nEnter your guess:";
+			cin >> guess;
+			guess = toupper(guess); // make uppercase since secret word in uppercase
+			cout << endl;
+
+			return guess;
+}
+
+bool checkGuess(const string THE_WORD, char guess){
+	return THE_WORD.find(guess) != string::npos;
+}
+
+
 
