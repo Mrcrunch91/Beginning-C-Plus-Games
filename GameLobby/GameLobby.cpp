@@ -46,6 +46,7 @@ private:
 
 	Player* m_pHead = 0;
 	string name = 0;
+	Player* m_pTail = 0;
 
 public:
 
@@ -63,18 +64,14 @@ public:
 		Player* pNewPlayer = new Player(name);
 
 		//if list is empty, make head of list this new player
-		if (m_pHead == 0) {
-			m_pHead = pNewPlayer;
+		if ((m_pHead == 0) | (m_pTail == 0)) {
+			m_pHead = m_pTail = pNewPlayer;
 		}
 
 		//otherwise find the end of the list and add the player there
 		else {
 
-			Player* pIter = m_pHead;
-
-			while (pIter->GetNext() != 0) {
-				pIter = pIter->GetNext();
-			}
+			Player* pIter = m_pTail;
 
 			pIter->SetNext(pNewPlayer);
 		}
@@ -122,7 +119,7 @@ ostream& operator<<(ostream& os, Lobby& aLobby) {
 
 ostream& operator<<(ostream& os, Player& aPlayer) {
 
-	os << "This Nigga: " << aPlayer.m_Name;
+	os << aPlayer.m_Name;
 	return os;
 }
 
