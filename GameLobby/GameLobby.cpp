@@ -109,7 +109,6 @@ ostream& operator<<(ostream& os, Lobby& aLobby) {
 	} else {
 		while (pIter != 0) {
 			cout << *pIter << endl;
-			//pIter->printPlayer();
 			pIter = pIter->GetNext();
 		}
 	}
