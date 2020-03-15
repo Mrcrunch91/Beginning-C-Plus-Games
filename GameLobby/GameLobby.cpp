@@ -60,7 +60,13 @@ public:
 		//create a new player node
 		cout << "Please enter the name of the new player: ";
 		string name;
-		cin >> name;
+
+		do{
+			getline(cin,name);
+		}while(name.length() <2);
+
+		//cin >> name_C;
+
 		Player* pNewPlayer = new Player(name);
 
 		//if list is empty, make head of list this new player
@@ -74,6 +80,8 @@ public:
 			Player* pIter = m_pTail;
 
 			pIter->SetNext(pNewPlayer);
+
+			m_pTail = pNewPlayer;
 		}
 	}
 
