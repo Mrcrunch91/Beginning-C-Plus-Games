@@ -1,44 +1,43 @@
 //Game Lobby
 //Simulates a game lobby where players wait
 
-#include <iostream>
-#include <string>
+
 #include "GameLobby.h"
 
-using namespace std;
 
-class Player {
 
-private:
-	string m_Name = 0;
-	Player* m_pNext = 0;  //Pointer to next player in list
-
-public:
-
-	friend ostream& operator<<(ostream& os, Player& aPlayer);
-
-	void printPlayer(Player& thePlayer);
-
-	Player(string name) :
-			m_Name(name), m_pNext(0) {
-	}
-
-	string GetName(){
-		return m_Name;
-	}
-
-	Player* GetNext() const {
-		return this->m_pNext;
-	}
-
-	void SetNext(Player *next) {
-		this->m_pNext = next;
-	}
-
-	void printPlayer(){
-			cout << this->m_Name<< endl;
-	}
-};
+//class Player {
+//
+//private:
+//	string m_Name = 0;
+//	Player* m_pNext = 0;  //Pointer to next player in list
+//
+//public:
+//
+//	friend ostream& operator<<(ostream& os, Player& aPlayer);
+//
+//	void printPlayer(Player& thePlayer);
+//
+//	Player(string name) :
+//			m_Name(name), m_pNext(0) {
+//	}
+//
+//	string GetName(){
+//		return m_Name;
+//	}
+//
+//	Player* GetNext() const {
+//		return this->m_pNext;
+//	}
+//
+//	void SetNext(Player *next) {
+//		this->m_pNext = next;
+//	}
+//
+//	void printPlayer(){
+//			cout << this->m_Name<< endl;
+//	}
+//};
 
 class Lobby {
 
