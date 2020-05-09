@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 class Scrabble {
 
@@ -17,5 +18,7 @@ public:
 	Scrabble();
 	virtual ~Scrabble();
 };
+
+
 
 #endif /* SCRABBLE_H_ */
