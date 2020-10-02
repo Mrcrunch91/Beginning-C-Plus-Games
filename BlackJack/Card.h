@@ -30,21 +30,22 @@ enum suit {
 };
 
 
-
 class Card {
 
 public:
 	Card(rank r, suit s, bool ifu = false);
-	Card();
-	virtual ~Card();
+	virtual ~Card(){};
 	int GetValue() const;
 	void Flip();
+
+
+
+private:
 
 	rank m_Rank;
 	suit m_Suit;
 	bool m_IsFaceUp;
 
-private:
 	//overloading << operator so can send Card object to standard output
 	friend std::ostream& operator<<(std::ostream &os, const Card &aCard);
 

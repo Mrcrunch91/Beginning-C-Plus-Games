@@ -10,24 +10,18 @@
 #include "Card.h"
 #include <vector>
 
+static std::vector<Card*> m_Cards;
+
 class Hand {
-
-protected:
-
-	static std::vector<Card> m_Cards;
 
 public:
 
 	Hand();
 	~Hand();
 
-	void Add(Card);
+	void Add(Card*);
 	void Clear();
 	int GetTotal() const;
-
-private:
-
-
 
 };
 

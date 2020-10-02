@@ -17,7 +17,7 @@ Hand::~Hand() {
 }
 
 //adds a card to the hand
-void Hand::Add(Card pCard) {
+void Hand::Add(Card* pCard) {
 	m_Cards.push_back(pCard);
 }
 
@@ -25,7 +25,7 @@ void Hand::Add(Card pCard) {
 void Hand::Clear() {
 
 	//iterate through vector, freeing all memory on the heap
-	std::vector<Card>::iterator iter = m_Cards.begin();
+	std::vector<Card*>::iterator iter = m_Cards.begin();
 	for (iter = m_Cards.begin(); iter != m_Cards.end(); ++iter) {
 		delete &iter;
 	}
@@ -42,23 +42,23 @@ int Hand::GetTotal() const {
 	}
 
 	//if a first card has value of 0, then card is face down; return 0
-	if (m_Cards[0].GetValue() == 0) {
+	if ((m_Cards[0])->Card::GetValue() == 0) {
 		return 0;
 	}
 
 	//add up card values, treat each Ace as 1
 	int total = 0;
 
-	std::vector<Card>::const_iterator iter;
+	std::vector<Card*>::const_iterator iter;
 
 	for (iter = m_Cards.begin(); iter != m_Cards.end(); ++iter) {
-		total += (iter)->GetValue();
+		total += (*iter)->GetValue();
 	}
 
 	//determine if hand contains an Ace
 	bool containsAce = false;
 	for (iter = m_Cards.begin(); iter != m_Cards.end(); ++iter) {
-		if ((iter)->GetValue() == rank::ACE) {
+		if ((*iter)->GetValue() == rank::ACE) {
 			containsAce = true;
 		}
 	}

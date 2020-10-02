@@ -10,11 +10,10 @@
 
 #include "Hand.h"
 
-
 class GenericPlayer: public Hand {
 
-friend std::ostream& operator<<(std::ostream &os,
-				const GenericPlayer &aGenericPlayer);
+	friend std::ostream& operator<<(std::ostream &os,
+			const GenericPlayer &aGenericPlayer);
 
 public:
 
@@ -27,16 +26,14 @@ public:
 	//announces that the generic player busts
 	void Bust() const;
 
+	GenericPlayer(const std::string &name = "");
+
+	virtual ~GenericPlayer() {}
 
 
-	 GenericPlayer(const std::string& name = "");
-
-	  virtual ~GenericPlayer() {}
 
 protected:
 	std::string m_Name;
-
-
 };
 
 #endif /* GENERICPLAYER_H_ */
