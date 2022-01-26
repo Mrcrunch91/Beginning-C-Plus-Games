@@ -1,131 +1,127 @@
 //Critter Caretaker
 //Simulates caring for a virtual pet
 
-#include <iostream>
+#include "Critter.hpp"
 
-using namespace std;
+Critter::Critter(int hunger = 4, int boredom = 2) :
+		m_Hunger(hunger), m_Boredom(boredom) {
+}
 
-class Critter{
+inline int Critter::GetMood() const {
+	return (m_Hunger + m_Boredom);
+}
 
-private:
-    int m_Hunger;
-    int m_Boredom;
+void Critter::PassTime(int time) {
+	m_Hunger += time;
+	m_Boredom += time;
+}
 
-public:
+void Critter::Talk() {
+	std::cout << "I'm a critter and I feel ";
 
-    Critter(int hunger = 4, int boredom = 2):
-        m_Hunger(hunger),
-        m_Boredom(boredom){}
+	int mood = GetMood();
+	if (mood > 15) {
 
-    inline int GetMood() const
-    {
-        return (m_Hunger + m_Boredom);
-    }
+		if (m_Hunger >= 7)
+			std::cout << "Hey man...I'm like super hungry!!" << std::endl;
 
-    void PassTime(int time = 1)
-    {
-        m_Hunger += time;
-        m_Boredom += time;
-    }
+		if (m_Boredom >= 7)
+			std::cout << "I desperately need something to do....please! "
+					<< std::endl;
 
-    void Talk()
-    {
-        cout << "I'm a critter and I feel ";
+	} else if (mood > 10) {
 
-        int mood = GetMood();
-        if (mood > 15)
-    	{
-            cout << "mad.\n";
-    	}
-        else if (mood > 10)
-    	{
-            cout << "frustrated.\n";
-    	}
-        else if (mood > 5)
-    	{
-            cout << "okay.\n";
-    	}
-        else
-    	{
-            cout << "happy.\n";
-    	}
+		if (m_Hunger >= 5)
+			std::cout << "I need a Snicker, cause I'm grumpy right now."
+					<< std::endl;
 
-        PassTime();
-    }
+		if (m_Boredom >= 5)
+			std::cout << "I need a new activity." << std::endl;
 
-    void Eat(int food = 4)
-    {
-        cout << "Brruppp.\n";
+	} else if (mood > 5) {
 
-        m_Hunger -= food;
-        if (m_Hunger < 0)
-    	{
-            m_Hunger = 0;
-    	}
+		if (m_Hunger >= 5)
+			std::cout
+					<< "Eh...I'm not hungry, but I wouldn't be opposed to a snack?"
+					<< std::endl;
 
-        PassTime();
-    }
+		if (m_Boredom >= 5)
+			std::cout << "I'm good for now, you can leave me alone. Haha"
+					<< std::endl;
+	} else {
+		if (m_Hunger >= 5)
+			std::cout << "I need a Snicker, cause I'm grumpy right now."
+					<< std::endl;
 
-    void Play(int fun = 4)
-    {
-        cout << "Wheee!\n";
+		if (m_Boredom >= 5)
+			std::cout << "I need a new activity." << std::endl;
+	}
 
-        m_Boredom -= fun;
-        if (m_Boredom < 0)
-    	{
-            m_Boredom = 0;
-    	}
+	PassTime();
+}
 
-        PassTime();
-    }
+void Critter::Eat(int food) {
+	std::cout << "Brruppp.\n";
 
-    void Status(){
-    	cout<< "Hunger Level: " << m_Hunger << "\nBoredom Level: " << m_Boredom;
-    }
+	m_Hunger -= food;
+	if (m_Hunger < 0) {
+		m_Hunger = 0;
+	}
 
+	PassTime();
+}
 
+void Critter::Play(int fun) {
+	std::cout << "Wheee!\n";
 
-};
+	m_Boredom -= fun;
+	if (m_Boredom < 0) {
+		m_Boredom = 0;
+	}
 
-int main(){
+	PassTime();
+}
+
+void Critter::Status() {
+	std::cout << "Hunger Level: " << m_Hunger << "\nBoredom Level: "
+			<< m_Boredom;
+}
+
+int main() {
 
 	Critter crit;
 	crit.Talk();
 
 	int choice;
-	do
-    {
-        cout << "\nCritter Caretaker\n\n";
-        cout << "0 - Quit\n";
-        cout << "1 - Listen to your critter\n";
-        cout << "2 - Feed your critter\n";
-        cout << "3 - Play with your critter\n\n";
-        cout << "4 - Check on your critter\n\n";
+	do {
+		std::cout << "\n\nCritter Caretaker\n\n" << std::endl;
+		std::cout << "0 - Quit\n" << std::endl;
+		std::cout << "1 - Listen to your critter\n" << std::endl;
+		std::cout << "2 - Feed your critter\n" << std::endl;
+		std::cout << "3 - Play with your critter\n" << std::endl;
 
-        cout << "Choice: ";
-        cin >> choice;
+		std::cout << "Choice: " << std::endl;
+		std::cin >> choice;
 
-        switch (choice)
-        {
-			case 0:
-				cout << "Good-bye.\n";
-				break;
-			case 1:
-				crit.Talk();
-				break;
-			case 2:
-				crit.Eat();
-				break;
-			case 3:
-				crit.Play();
-				break;
-			case 4:
-				crit.Status();
-				break;
-			default:
-				cout << "\nSorry, but " << choice << " isn't a valid choice.\n";
-        }
+		switch (choice) {
+		case 0:
+			std::cout << "Good-bye.\n";
+			break;
+		case 1:
+			crit.Talk();
+			break;
+		case 2:
+			crit.Eat();
+			break;
+		case 3:
+			crit.Play();
+			break;
+		default:
+			std::cout << "\nSorry, but " << choice
+					<< " isn't a valid choice.\n";
+			crit.Status();
+		}
 	} while (choice != 0);
 
-    return 0;
+	return 0;
 }

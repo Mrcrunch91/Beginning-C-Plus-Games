@@ -5,108 +5,78 @@
 #include "GameLobby.h"
 
 
+Player::Player(std::string name):
+		m_Name(name), m_pNext(0) {}
 
-//class Player {
-//
-//private:
-//	string m_Name = 0;
-//	Player* m_pNext = 0;  //Pointer to next player in list
-//
-//public:
-//
-//	friend ostream& operator<<(ostream& os, Player& aPlayer);
-//
-//	void printPlayer(Player& thePlayer);
-//
-//	Player(string name) :
-//			m_Name(name), m_pNext(0) {
-//	}
-//
-//	string GetName(){
-//		return m_Name;
-//	}
-//
-//	Player* GetNext() const {
-//		return this->m_pNext;
-//	}
-//
-//	void SetNext(Player *next) {
-//		this->m_pNext = next;
-//	}
-//
-//	void printPlayer(){
-//			cout << this->m_Name<< endl;
-//	}
-//};
+std::string Player::getName(){
+	return m_Name;
+}
 
-class Lobby {
+Player* Player::getNext() const {
+	return this->m_pNext;
+}
 
-private:
+void Player::setNext(Player *next) {
+	this->m_pNext = next;
+}
 
-	Player* m_pHead = 0;
-	string name = 0;
-	Player* m_pTail = 0;
+void Player::printPlayer(){
+	std::cout << this->m_Name<< std::endl;
+}
 
-public:
 
-	friend ostream& operator<<(ostream& os, Lobby& aLobby);
+Lobby::Lobby(const std::string &name):name(name){}
 
-	~Lobby();
-	Lobby(const string &name):name(name){}
+void Lobby::AddPlayer() {
 
-	void AddPlayer() {
+	//create a new player node
+	std::cout << "Please enter the name of the new player: ";
+	std::string name;
 
-		//create a new player node
-		cout << "Please enter the name of the new player: ";
-		string name;
+	//The name needs to be greater than 2 characters, so iterate until the user does so
+	do{
+		getline(std::cin,name);
+	}while(name.length() < 2);
 
-		do{
-			getline(cin,name);
-		}while(name.length() <2);
+	Player* pNewPlayer = new Player(name);
 
-		//cin >> name_C;
-
-		Player* pNewPlayer = new Player(name);
-
-		//if list is empty, make head of list this new player
-		if ((m_pHead == 0) | (m_pTail == 0)) {
-			m_pHead = m_pTail = pNewPlayer;
-		}
-
-		//otherwise find the end of the list and add the player there
-		else {
-
-			Player* pIter = m_pTail;
-
-			pIter->SetNext(pNewPlayer);
-
-			m_pTail = pNewPlayer;
-		}
+	//if list is empty, make head of list this new player
+	if ((m_pHead == 0) || (m_pTail == 0)) {
+		m_pHead = m_pTail = pNewPlayer;
 	}
+	//otherwise find the end of the list and add the player there
+	else {
 
-	void RemovePlayer() {
-		if (m_pHead == 0) {
-			cout << "The game lobby is empty.  No one to remove!\n";
-		} else {
-			Player *pTemp = m_pHead;
-			m_pHead = m_pHead->GetNext();
-			delete pTemp;
-		}
+		Player* pIter = m_pTail;
+
+		pIter->setNext(pNewPlayer);
+
+		m_pTail = pNewPlayer;
 	}
+}
 
-	void Clear() {
-		while (m_pHead != 0) {
-			RemovePlayer();
-		}
+void Lobby::RemovePlayer() {
+	if (m_pHead == 0) {
+		std::cout << "The game lobby is empty.  No one to remove!\n";
+	} else {
+		Player *pTemp = m_pHead;
+		m_pHead = m_pHead->getNext();
+		delete pTemp;
 	}
+}
 
-	string getName(){
+void Lobby::Clear() {
+	while (m_pHead != 0) {
+		RemovePlayer();
+	}
+}
+
+std::string Lobby::getName(){
 		return this->name;
-	}
-};
+}
 
 
-ostream& operator<<(ostream& os, Lobby& aLobby) {
+std::ostream& operator<<(std::ostream& os, Lobby& aLobby) {
 
 	Player *pIter = aLobby.m_pHead;
 
@@ -115,17 +85,18 @@ ostream& operator<<(ostream& os, Lobby& aLobby) {
 		os << "The lobby is empty.\n";
 	} else {
 		while (pIter != 0) {
-			cout << *pIter << endl;
-			pIter = pIter->GetNext();
+			std::cout << *pIter << std::endl;
+			pIter = pIter->getNext();
 		}
 	}
 
 	return os;
 }
 
-ostream& operator<<(ostream& os, Player& aPlayer) {
 
-	os << aPlayer.m_Name;
+std::ostream& operator<<(std::ostream& os, Player& aPlayer) {
+
+	os << aPlayer.m_Name << std::endl;
 	return os;
 }
 
@@ -135,19 +106,19 @@ int main() {
 	Lobby* myLobby = new Lobby("Path of Exile Lobby");
 	int choice;
 
-	cout << myLobby->getName() << "\n" << endl;
+	std::cout << myLobby->getName() << "\n" << std::endl;
 
 	do {
-		cout << "0 - Exit the program.\n";
-		cout << "1 - Add a player to the lobby.\n";
-		cout << "2 - Remove a player from the lobby.\n";
-		cout << "3 - Clear the lobby.\n";
-		cout << endl << "Enter choice: ";
-		cin >> choice;
+		std::cout << "0 - Exit the program.\n";
+		std::cout << "1 - Add a player to the lobby.\n";
+		std::cout << "2 - Remove a player from the lobby.\n";
+		std::cout << "3 - Clear the lobby.\n";
+		std::cout << std::endl << "Enter choice: ";
+		std::cin >> choice;
 
 		switch (choice) {
 		case 0:
-			cout << "Good-bye.\n";
+			std::cout << "Good-bye.\n";
 			break;
 		case 1:
 			myLobby->AddPlayer();
@@ -159,9 +130,9 @@ int main() {
 			myLobby->Clear();
 			break;
 		default:
-			cout << "That was not a valid choice.\n";
+			std::cout << "That was not a valid choice.\n";
 		}
-		cout << *myLobby << endl;
+		std::cout << *myLobby << std::endl;
 	} while (choice != 0);
 
 	return 0;

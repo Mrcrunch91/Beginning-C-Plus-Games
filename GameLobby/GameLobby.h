@@ -11,7 +11,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
 
 class GameLobby {
 
@@ -23,34 +22,54 @@ public:
 class Player {
 
 private:
-	string m_Name = 0;
+
+	std::string m_Name = 0;
 	Player* m_pNext = 0;  //Pointer to next player in list
 
 public:
 
-	friend ostream& operator<<(ostream& os, Player& aPlayer);
+	friend std::ostream& operator<<(std::ostream& os, Player& aPlayer);
 
 	void printPlayer(Player& thePlayer);
 
-	Player(string name) :
-			m_Name(name), m_pNext(0) {
-	}
+	Player(std::string name);
 
-	string GetName(){
-		return m_Name;
-	}
 
-	Player* GetNext() const {
-		return this->m_pNext;
-	}
+	std::string getName();
 
-	void SetNext(Player *next) {
-		this->m_pNext = next;
-	}
+	Player* getNext() const;
 
-	void printPlayer(){
-			cout << this->m_Name<< endl;
-	}
+	void setNext(Player *next);
+
+	void printPlayer();
+
+};
+
+
+class Lobby {
+
+private:
+
+	Player* m_pHead = 0;
+	std::string name = 0;
+	Player* m_pTail = 0;
+
+public:
+
+	friend std::ostream& operator<<(std::ostream& os, Lobby& aLobby);
+
+	Lobby(const std::string &name);
+	~Lobby();
+
+
+
+	void AddPlayer();
+
+	void RemovePlayer();
+
+	void Clear();
+
+	std::string getName();
 };
 
 

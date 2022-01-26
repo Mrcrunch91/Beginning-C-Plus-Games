@@ -96,6 +96,7 @@ int startGame(const string THE_WORD, int wrong, string used, const int MAX_WRONG
 }
 
 char playerGuess(){
+
 	char guess;
 			cout << "\n\nEnter your guess:";
 			cin >> guess;
