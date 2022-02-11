@@ -1,8 +1,2 @@
-Critter/Debug/*
-*.xml
+*.settings.xml
 *.swp
-*.o
-HangMan/Debug/
-*/.settings/
-*.cproject
-

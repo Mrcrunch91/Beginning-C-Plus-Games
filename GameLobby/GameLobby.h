@@ -61,8 +61,6 @@ public:
 	Lobby(const std::string &name);
 	~Lobby();
 
-
-
 	void AddPlayer();
 
 	void RemovePlayer();
