@@ -93,4 +93,7 @@ void Game::Play() {
 		(pPlayer)->Clear();
 	}
 	m_House.Clear();
+
+	// If deck gets low, re-populate for new round
+	m_Deck.Populate();
 }

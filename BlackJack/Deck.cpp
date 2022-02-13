@@ -19,13 +19,18 @@ Deck::~Deck() {
 
 void Deck::Populate() {
 
-	Clear();
+	if(m_Cards.empty() || (m_Cards.size() < 20)){
 
-	for (int s = suit::CLUBS; s <= suit::SPADES; ++s) {
-		for (int r = rank::ACE; r <= rank::KING; ++r) {
-			Card* theCard = new Card(static_cast<rank>(r), static_cast<suit>(s));
-			Hand::Add(theCard);
+		Clear();
+
+		for (int s = suit::CLUBS; s <= suit::SPADES; ++s) {
+			for (int r = rank::ACE; r <= rank::KING; ++r) {
+				Card* theCard = new Card(static_cast<rank>(r), static_cast<suit>(s));
+				Hand::Add(theCard);
+			}
 		}
+
+		std::cout << "Deck has been re-populated!" << std::endl;
 	}
 }
 
@@ -34,6 +39,7 @@ void Deck::Shuffle() {
 }
 
 void Deck::Deal(Hand& aHand) {
+
 	if (!m_Cards.empty()) {
 		aHand.Add(m_Cards.back());
 		m_Cards.pop_back();
