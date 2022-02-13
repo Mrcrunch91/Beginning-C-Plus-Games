@@ -33,7 +33,7 @@ enum suit {
 class Card {
 
 public:
-	Card(rank r, suit s, bool ifu = false);
+	Card(rank r, suit s, bool ifu = true);
 	virtual ~Card(){};
 	int GetValue() const;
 	void Flip();

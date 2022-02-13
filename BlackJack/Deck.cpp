@@ -9,7 +9,6 @@
 #include "GenericPlayer.h"
 
 
-
 Deck::Deck() {
 	m_Cards.reserve(52);
 	Populate();
@@ -46,14 +45,12 @@ void Deck::Deal(Hand& aHand) {
 
 void Deck::AdditionalCards(GenericPlayer &aGenericPlayer) {
 
-
-
-	std::cout << std::endl;
 	//continue to deal a card as long as generic player isn't busted and
 	//wants another hit
 	while (!(aGenericPlayer.IsBusted()) && aGenericPlayer.IsHitting()) {
 
 		Deal(aGenericPlayer);
+
 		std::cout << aGenericPlayer << std::endl;
 
 		if (aGenericPlayer.IsBusted()) {

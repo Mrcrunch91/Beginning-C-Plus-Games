@@ -2,7 +2,7 @@
 //Demonstrates access control under inheritance
 
 #include <iostream>
-using namespace std;
+
 
 class Enemy
 {
@@ -20,7 +20,7 @@ Enemy::Enemy():
 
 void Enemy::Attack() const
 { 
-    cout << "Attack inflicts " << m_Damage << " damage points!\n";
+    std::cout << "Attack inflicts " << m_Damage << " damage points!\n";
 }  
 
 class Boss : public Enemy
@@ -29,7 +29,7 @@ public:
     Boss();
     void SpecialAttack() const;
 
-private:
+protected:
     int m_DamageMultiplier;
 };
 
@@ -39,20 +39,45 @@ Boss::Boss():
 
 void Boss::SpecialAttack() const
 {
-    cout << "Special Attack inflicts " << (m_DamageMultiplier * m_Damage); 
-    cout << " damage points!\n";
+    std::cout << "Special Attack inflicts " << (m_DamageMultiplier * m_Damage);
+    std::cout << " damage points!\n";
+}
+
+
+class FinalBoss : public Boss
+{
+public:
+	FinalBoss();
+    void MegaAttack() const;
+private:
+    int m_FinalDamageMultiplier;
+};
+
+FinalBoss::FinalBoss():
+	m_FinalDamageMultiplier(10)
+{}
+
+void FinalBoss::MegaAttack() const{
+    std::cout << "Mega Attack inflicts " << ((m_DamageMultiplier * m_Damage) * m_FinalDamageMultiplier);
+    std::cout << " damage points!\n";
 }
 
 int main()
 { 
-    cout << "Creating an enemy.\n";
+    std::cout << "Creating an enemy.\n";
     Enemy enemy1;
     enemy1.Attack();
 
-    cout << "\nCreating a boss.\n";
+    std::cout << "\nCreating a boss.\n";
     Boss boss1;
     boss1.Attack();
     boss1.SpecialAttack();
+
+    std::cout << "\nCreating a Mega boss.\n";
+    FinalBoss boss2;
+    boss2.Attack();
+    boss2.SpecialAttack();
+    boss2.MegaAttack();
 
     return 0;
 } 

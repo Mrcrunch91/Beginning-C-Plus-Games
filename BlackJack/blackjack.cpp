@@ -11,23 +11,6 @@
 #include "Game.h"
 
 
-//overloads << operator so Card object can be sent to cout
-std::ostream& operator<<(std::ostream &os, const Card &aCard) {
-	const std::string RANKS[] = { "0", "A", "2", "3", "4", "5", "6", "7", "8", "9",
-			"10", "J", "Q", "K" };
-	const std::string SUITS[] = { "c", "d", "h", "s" };
-
-	if (aCard.m_IsFaceUp) {
-		os << RANKS[aCard.m_Rank] << SUITS[aCard.m_Suit];
-	} else {
-		os << "XX";
-	}
-
-	return os;
-}
-
-
-
 int main() {
 
 	std::cout << "\t\tWelcome to Blackjack!\n\n";
@@ -48,7 +31,7 @@ int main() {
 		names.push_back(name);
 	}
 
-	std::cout << std::endl;
+	std::cout << "Welcome to the game: " + name  << std::endl;
 
 	//the game loop
 	Game aGame(names);

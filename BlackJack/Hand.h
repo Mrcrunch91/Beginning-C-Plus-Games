@@ -10,7 +10,7 @@
 #include "Card.h"
 #include <vector>
 
-static std::vector<Card*> m_Cards;
+
 
 class Hand {
 
@@ -22,6 +22,9 @@ public:
 	void Add(Card*);
 	void Clear();
 	int GetTotal() const;
+
+protected:
+	std::vector<Card*> m_Cards;
 
 };
 

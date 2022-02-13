@@ -25,7 +25,7 @@ public:
 private:
 	Deck m_Deck;
 	House m_House;
-	std::vector<Player*> m_Players;
+	std::vector<Player> m_Players;
 };
 
 #endif /* GAME_H_ */

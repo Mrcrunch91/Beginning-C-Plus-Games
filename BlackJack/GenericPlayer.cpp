@@ -19,20 +19,20 @@ void GenericPlayer::Bust() const {
 }
 
 //overloads << operator so a GenericPlayer object can be sent to cout
-std::ostream& operator<<(std::ostream &os, const GenericPlayer &aGenericPlayer) {
+std::ostream& operator<<(std::ostream& os, const GenericPlayer& aGenericPlayer) {
 
 	os << aGenericPlayer.m_Name << ":\t";
 
-	std::vector<Card*>::const_iterator pCard = m_Cards.begin();
+	std::vector<Card*>::const_iterator pCard = aGenericPlayer.m_Cards.begin();
 
-	if (!m_Cards.empty()) {
+	if (!aGenericPlayer.m_Cards.empty()) {
 
-		for (; pCard != m_Cards.end(); ++pCard) {
+		for (; pCard != aGenericPlayer.m_Cards.end(); ++pCard) {
 					os << *(*pCard) << "\t";
 		}
 
 		if (aGenericPlayer.GetTotal() != 0) {
-			std::cout << "(" << aGenericPlayer.GetTotal() << ")";
+			std::cout << "(" << aGenericPlayer.GetTotal() << ")" << std::endl;
 		}
 	} else {
 		os << "<empty>";

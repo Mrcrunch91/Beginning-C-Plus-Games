@@ -14,9 +14,9 @@ Game::Game(const std::vector<std::string> &names) {
 
 	for (pName = names.begin(); pName != names.end(); ++pName) {
 
-		Player myP = Player(*pName);
+		//Player* myP = new Player(*pName);
 
-		m_Players.push_back(&myP);
+		m_Players.push_back(Player(*pName));
 	}
 
 	//seed the random number generator
@@ -29,13 +29,15 @@ Game::Game(const std::vector<std::string> &names) {
 void Game::Play() {
 
 	//deal initial 2 cards to everyone
-	std::vector<Player*>::iterator pPlayer;
+	std::vector<Player>::iterator pPlayer;
 
 	for (int i = 0; i < 2; ++i) {
 		for (pPlayer = m_Players.begin(); pPlayer != m_Players.end();
 				++pPlayer) {
-			m_Deck.Deal(**pPlayer);
+			m_Deck.Deal(*pPlayer);
 		}
+
+		//Deal two cards to the house
 		m_Deck.Deal(m_House);
 	}
 
@@ -44,13 +46,14 @@ void Game::Play() {
 
 	//display everyone's hand
 	for (pPlayer = m_Players.begin(); pPlayer != m_Players.end(); ++pPlayer) {
-		std::cout << &pPlayer << std::endl;
+		std::cout << *pPlayer << std::endl;
 	}
+
 	std::cout << m_House << std::endl;
 
 	//deal additional cards to players
 	for (pPlayer = m_Players.begin(); pPlayer != m_Players.end(); ++pPlayer) {
-		m_Deck.AdditionalCards(**pPlayer);
+		m_Deck.AdditionalCards(*pPlayer);
 	}
 
 	//reveal house's first card
@@ -64,21 +67,21 @@ void Game::Play() {
 		//everyone still playing wins
 		for (pPlayer = m_Players.begin(); pPlayer != m_Players.end();
 				++pPlayer) {
-			if (!((*pPlayer)->IsBusted())) {
-				(*pPlayer)->Win();
+			if (!((pPlayer)->IsBusted())) {
+				(pPlayer)->Win();
 			}
 		}
 	} else {
 
 		//compare each player still playing to house
 		for (pPlayer = m_Players.begin(); pPlayer != m_Players.end(); ++pPlayer) {
-			if (!((*pPlayer)->IsBusted())) {
-				if ((*pPlayer)->GetTotal() > m_House.GetTotal()) {
-					(*pPlayer)->Win();
-				} else if ((*pPlayer)->GetTotal() < m_House.GetTotal()) {
-					(*pPlayer)->Lose();
+			if (!((pPlayer)->IsBusted())) {
+				if ((pPlayer)->GetTotal() > m_House.GetTotal()) {
+					(pPlayer)->Win();
+				} else if ((pPlayer)->GetTotal() < m_House.GetTotal()) {
+					(pPlayer)->Lose();
 				} else {
-					(*pPlayer)->Push();
+					(pPlayer)->Push();
 				}
 			}
 		}
@@ -87,7 +90,7 @@ void Game::Play() {
 
 	//remove everyone's cards
 	for (pPlayer = m_Players.begin(); pPlayer != m_Players.end(); ++pPlayer) {
-		(*pPlayer)->Clear();
+		(pPlayer)->Clear();
 	}
 	m_House.Clear();
 }

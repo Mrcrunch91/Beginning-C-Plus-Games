@@ -25,7 +25,9 @@ void Player::printPlayer(){
 }
 
 
-Lobby::Lobby(const std::string &name):name(name){}
+Lobby::Lobby(const std::string &name):
+		name(name)
+{}
 
 void Lobby::AddPlayer() {
 
