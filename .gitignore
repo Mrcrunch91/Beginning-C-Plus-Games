@@ -1,2 +1,8 @@
 *.settings.xml
 *.swp
+.vscode/
+build/
+*.code-workspace
+*.cproject
+*.project
+*.gitattributes
